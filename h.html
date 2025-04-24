@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HE-ART  | Discover & Collect Art</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+       
+       body {
+            font-family: 'Quicksand', sans-serif;
+        }
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .inter {
+          font-family: 'Inter', sans-serif;
+        }
+        /* Kenyan flag-inspired colors */
+        .bg-gradient-kenyan {
+            background: linear-gradient(to right, #006600, #990000); /* Green and Red from Kenyan flag */
+        }
+        .text-gradient-kenyan {
+            background: linear-gradient(to right, #006600, #cc0000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 20px -5px rgba(0, 102, 0, 0.3), 0 8px 10px -5px rgba(153, 0, 0, 0.2);
+        }
+        .hero-pattern {
+            /* Kenyan-inspired background pattern */
+            background-color: #111;
+            background-image: 
+                radial-gradient(circle at 20% 35%, rgba(0, 102, 0, 0.15) 0%, transparent 35%),
+                radial-gradient(circle at 75% 44%, rgba(153, 0, 0, 0.15) 0%, transparent 35%),
+                radial-gradient(circle at 50% 80%, rgba(0, 0, 0, 0.1) 0%, transparent 30%);
+        }
+        .custom-shape-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        .custom-shape-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 70px;
+        }
+        .custom-shape-divider .shape-fill {
+            fill: #f3f4f6;
+        }
+
+        /* Kenyan-inspired styles */
+        .glassmorphism {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            border-radius: 16px;
+        }
+        .category-card:hover {
+             transform: translateY(-5px) scale(1.03);
+             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+        .artist-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Header Styles with Kenyan colors */
+        .header-gradient {
+            background: linear-gradient(to right, #006600, #cc0000);
+        }
+        .header-glassmorphism {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 18px;
+        }
+        
+        /* Kenyan pattern background */
+        .kenyan-pattern {
+            background-color: #222;
+            background-image: repeating-linear-gradient(45deg, #006600 0, #006600 10px, transparent 10px, transparent 20px),
+                             repeating-linear-gradient(-45deg, #990000 0, #990000 10px, transparent 10px, transparent 20px);
+            background-size: 50px 50px;
+            background-opacity: 0.1;
+        }
+        
+        /* Buttons with Kenyan color scheme */
+        .btn-kenyan-green {
+            background-color: #006600;
+        }
+        .btn-kenyan-green:hover {
+            background-color: #008800;
+        }
+        .btn-kenyan-red {
+            background-color: #cc0000;
+        }
+        .btn-kenyan-red:hover {
+            background-color: #ff0000;
+        }
+        .btn-kenyan-black {
+            background-color: #222;
+        }
+        .btn-kenyan-black:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body class="antialiased bg-gray-900 text-white inter">
+    <header class="bg-cover bg-center bg-no-repeat relative min-h-[400px] md:min-h-[500px] flex items-center" style="background-image: url('/api/placeholder/1920/800')">
+        <div class="absolute inset-0 bg-gradient-to-br from-black via-transparent to-black opacity-80"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center">
+                <h1 class="playfair text-6xl md:text-8xl font-bold text-white leading-tight mb-4 text-shadow-lg">
+                    <span class="text-gradient-kenyan">Art</span>Safari
+                </h1>
+                <p class="text-2xl text-gray-300 max-w-3xl mx-auto mb-10 inter">
+                    Discover authentic Kenyan art and connect with talented local artists.
+                </p>
+                <div class="flex justify-center">
+                    <a href="#marketplace" class="btn bg-green-800 hover:bg-green-700 text-white px-8 py-3 rounded-full font-semibold text-lg transition-all duration-300 transform hover:scale-105 shadow-xl inter">
+                        Explore the Marketplace
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="bg-transparent shadow-lg fixed w-full z-50 glassmorphism">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <span class="playfair text-3xl font-bold text-green-500">ArtSafari</span>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="#home" class="border-green-500 text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
+                        <a href="#marketplace" class="border-transparent text-gray-300 hover:border-green-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">Marketplace</a>
+                        <a href="#artists" class="border-transparent text-gray-300 hover:border-green-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">Artists</a>
+                        <a href="#about" class="border-transparent text-gray-300 hover:border-green-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">About</a>
+                        <a href="#contact" class="border-transparent text-gray-300 hover:border-green-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">Contact</a>
+                    </div>
+                </div>
+                <div class="hidden sm:ml-6 sm:flex sm:items-center">
+                    <button class="bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition">Sign Up</button>
+                    <button class="ml-4 bg-transparent hover:bg-red-800 text-red-500 hover:text-white px-4 py-2 border border-red-800 rounded-md text-sm font-medium transition">Log In</button>
+                </div>
+                <div class="-mr-2 flex items-center sm:hidden">
+                    <button @click="isOpen = !isOpen" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500">
+                        <svg class="h-6 w-6" x-show="!isOpen" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="h-6 w-6" x-show="isOpen" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div x-show="isOpen" class="sm:hidden bg-gray-900">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="#home" class="bg-green-800 border-green-500 text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
+                <a href="#marketplace" class="border-transparent text-gray-300 hover:bg-gray-800 hover:border-green-500 hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors">Marketplace</a>
+                <a href="#artists" class="border-transparent text-gray-300 hover:bg-gray-800 hover:border-green-500 hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors">Artists</a>
+                <a href="#about" class="border-transparent text-gray-300 hover:bg-gray-800 hover:border-green-500 hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors">About</a>
+                <a href="#contact" class="border-transparent text-gray-300 hover:bg-gray-800 hover:border-green-500 hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors">Contact</a>
+            </div>
+            <div class="pt-4 pb-3 border-t border-gray-700">
+                <div class="flex items-center px-4">
+                    <button class="bg-green-800 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition w-full text-center">Sign Up</button>
+                </div>
+                <div class="mt-3 flex items-center px-4">
+                    <button class="bg-transparent hover:bg-red-800 text-red-500 hover:text-white px-4 py-2 border border-red-800 rounded-md text-sm font-medium transition w-full text-center">Log In</button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="marketplace" class="py-16 md:py-24 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="playfair text-4xl md:text-5xl font-bold text-white">Featured Kenyan Art</h2>
+                <p class="mt-4 text-xl text-gray-400 max-w-3xl mx-auto inter">
+                    Discover this week's selected pieces from Kenya's most talented artists
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transition duration-500 card-hover border border-green-900">
+                    <div class="relative">
+                        <img src="/api/placeholder/400/300" alt="Maasai Art" class="w-full h-64 object-cover" />
+                        <div class="absolute top-4 right-4 bg-red-700 text-white text-xs font-bold px-3 py-1 rounded-full">
+                            New
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 playfair">Maasai Dreams</h3>
+                        <p class="text-gray-400 mb-4 inter">A vibrant expression of Maasai culture through traditional patterns and symbolic motifs.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <img src="/api/placeholder/40/40" alt="Artist Avatar" class="w-8 h-8 rounded-full border border-gray-700" />
+                                <span class="text-sm font-medium text-gray-300 inter">Wanjiku Mwangi</span>
+                            </div>
+                            <span class="font-bold text-green-500">KSh 45,000</span>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <button class="w-full py-3 bg-green-800 hover:bg-green-700 text-white rounded-lg font-medium transition inter">View Artwork</button>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transition duration-500 card-hover border border-green-900">
+                    <div class="relative">
+                        <img src="/api/placeholder/400/300" alt="Digital Art" class="w-full h-64 object-cover" />
+                        <div class="absolute top-4 right-4 bg-green-700 text-white text-xs font-bold px-3 py-1 rounded-full">
+                            Featured
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 playfair">Nairobi Nights</h3>
+                        <p class="text-gray-400 mb-4 inter">A digital artwork exploring the vibrant urban life of Kenya's capital city.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <img src="/api/placeholder/40/40" alt="Artist Avatar" class="w-8 h-8 rounded-full border border-gray-700" />
+                                <span class="text-sm font-medium text-gray-300 inter">Kiptoo Kimani</span>
+                            </div>
+                            <span class="font-bold text-green-500">KSh 37,500</span>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <button class="w-full py-3 bg-green-800 hover:bg-green-700 text-white rounded-lg font-medium transition inter">View Artwork</button>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-xl shadow-lg overflow-hidden transition duration-500 card-hover border border-green-900">
+                    <div class="relative">
+                        <img src="/api/placeholder/400/300" alt="Sculpture" class="w-full h-64 object-cover" />
+                        <div class="absolute top-4 right-4 bg-yellow-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+                            Trending
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 playfair">Soapstone Spirit</h3>
+                        <p class="text-gray-400 mb-4 inter">A handcrafted Kisii soapstone sculpture representing family unity and harmony.</p>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <img src="/api/placeholder/40/40" alt="Artist Avatar" class="w-8 h-8 rounded-full border border-gray-700" />
+                                <span class="text-sm font-medium text-gray-300 inter">Amina Odhiambo</span>
+                            </div>
+                            <span class="font-bold text-green-500">KSh 58,000</span>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <button class="w-full py-3 bg-green-800 hover:bg-green-700 text-white rounded-lg font-medium transition inter">View Artwork</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="px-8 py-3 bg-red-800 hover:bg-red-700 text-white rounded-lg font-bold transition transform hover:scale-105 inter">
+                    Explore All Artworks
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="categories" class="py-16 md:py-24 relative">
+        <div class="absolute inset-0 z-0">
+            <img src="/api/placeholder/1920/800" alt="Kenyan Art Background" class="w-full h-full object-cover opacity-60" />
+            <div class="absolute inset-0 bg-gradient-to-br from-black via-transparent to-black opacity-80"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="playfair text-4xl md:text-5xl font-bold text-white">Explore Kenyan Art</h2>
+                <p class="mt-4 text-xl text-gray-300 max-w-3xl mx-auto inter">Find your perfect piece through our curated Kenyan art categories</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+                <div class="category-card bg-black bg-opacity-50 backdrop-filter backdrop-blur-md rounded-xl p-6 text-center transition transform hover:scale-105 border border-green-900">
+                    <div class="w-16 h-16 mx-auto bg-green-700 rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 playfair">Maasai Art</h3>
+                    <p class="text-gray-300 inter">Traditional beadwork and vibrant patterns</p>
+                </div>
+                
+                <div class="category-card bg-black bg-opacity-50 backdrop-filter backdrop-blur-md rounded-xl p-6 text-center transition transform hover:scale-105 border border-green-900">
+                    <div class="w-16 h-16 mx-auto bg-red-700 rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 playfair">Contemporary</h3>
+                    <p class="text-gray-300 inter">Modern Kenyan creative expressions</p>
+                </div>
+                
+                <div class="category-card bg-black bg-opacity-50 backdrop-filter backdrop-blur-md rounded-xl p-6 text-center transition transform hover:scale-105 border border-green-900">
+                    <div class="w-16 h-16 mx-auto bg-yellow-600 rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h6a2 2 0 012 2v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9zM9 3v7m0-0c0 1.609-2.343 2.907-4 3M15 17v2a2 2 0 002 2h2a2 2 0 002-2v-7a2 2 0 00-2-2h-4a2 2 0 00-2 2v7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 playfair">Kisii Soapstone</h3>
+                    <p class="text-gray-300 inter">Hand-carved stone sculptures</p>
+                </div>
+                
+                <div class="category-card bg-black bg-opacity-50 backdrop-filter backdrop-blur-md rounded-xl p-6 text-center transition transform hover:scale-105 border border-green-900">
+                    <div class="w-16 h-16 mx-auto bg-black rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-4c0-1.519-1.236-2.807-2.764-3.091M19 17v-4c0-1.519-1.236-2.807-2.764-3.091M3 11h16v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6zM15 10v2a1 1 0 01-1 1h-2a1 1 0 01-1-1v-2a1 1 0 011-1h2a1 1 0 011 1z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 playfair">Kikoi Textiles</h3>
+                    <p class="text-gray-300 inter">Traditional fabric art and designs</p>
+                </div>
+            </div>
+        
+            <div class="text-center mt-12">
+                <button class="px-8 py-3 bg-green-800 hover:bg-green-700 text-white rounded-lg font-bold transition transform hover:scale-105 inter">
+                    Explore All Categories
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="artists" class="py-16 md:py-24 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="playfair text-4xl md:text-5xl font-bold text-white">Featured Kenyan Artists</h2>
+                <p class="mt-4 text-xl text-gray-400 max-w-3xl mx-auto inter">Meet the talented creators shaping Kenya's vibrant art scene</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="artist-card bg-gray-800 rounded-xl shadow-lg overflow-hidden transition duration-500 border border-green-900">
+                    <div class="relative">
+                        <img src="/api/placeholder/400/400" alt="Artist Profile" class="w-full h-64 object-cover rounded-t-xl" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 playfair">Njeri Wangari</h3>
+                        <p class="text-gray-400 mb-4 inter">
+                            Njeri is a Nairobi-based artist whose vibrant paintings capture the spirit and energy of Kenya's urban landscapes.
+                        </p>
+                        <div class="flex items-center justify-between mt-4">
+                            <span class="text-sm text-gray-300">25 Artworks</span>
+                            <button class="bg-transparent text-green-500 hover:text-white px-3 py-1 rounded-full border border-green-700 hover:bg-green-800 transition-colors inter">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="artist-card bg-gray-800 rounded-xl shadow-lg overflow-hidden transition duration-500 border border-green-900">
+                    <div class="relative">
+                        <img src="/api/placeholder/400/400" alt="Artist Profile" class="w-full h-64 object-cover rounded-t-xl" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 playfair">Mwangi Kariuki</h3>
+                        <p class="text-gray-400 mb-4 inter">
+                            Mwangi is a digital artist creating mesmerizing works that blend traditional Kenyan motifs with modern techniques.
+                        </p>
+                        <div class="flex items-center justify-between mt-4">
+                            <span class="text-sm text-gray-300">18 Artworks</span>
+                            <button class="bg-transparent text-green-500 hover:text-white px-3 py-1 rounded-full border border-green-700 hover:bg-green-800 transition-colors inter">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="artist-card bg-gray-800 rounded-xl shadow-lg overflow-hidden transition duration-500 border border-green-900">
+                    <div class="relative">
+                        <img src="/api/placeholder/400/400" alt="Artist Profile" class="w-full h-64 object-cover rounded-t-xl" />
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2 playfair">Akinyi Otieno</h3>
+                        <p class="text-gray-400 mb-4 inter">
+                           Akinyi is a master sculptor from Kisii, known for her exquisite soapstone carvings representing Kenyan wildlife.
+                        </p>
+                        <div class="flex items-center justify-between mt-4">
+                            <span class="text-sm text-gray-300">22 Artworks</span>
+                            <button class="bg-transparent text-green-500 hover:text-white px-3 py-1 rounded-full border border-green-700 hover:bg-green-800 transition-colors inter">
+                                View Profile
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+           </div>
+           </section>
+           </body>
+           </html>

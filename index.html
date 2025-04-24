@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HE-ART  | Discover & Collect Art</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        
+        .safari-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(90deg, #f59e0b, #ef4444);
+        }
+        
+        .neon-shadow {
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.7);
+        }
+        
+        .artwork-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
+        }
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .inter {
+          font-family: 'Inter', sans-serif;
+        }
+        /* Kenyan flag-inspired colors */
+        .bg-gradient-kenyan {
+            background: linear-gradient(90deg, #f59e0b, #ef4444);
+        }
+        .text-gradient-kenyan {
+            background: linear-gradient(to right, #006600, #cc0000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 20px -5px rgba(0, 102, 0, 0.3), 0 8px 10px -5px rgba(153, 0, 0, 0.2);
+        }
+        .hero-pattern {
+            /* Kenyan-inspired background pattern */
+            background-color: #111;
+            background-image: 
+                radial-gradient(circle at 20% 35%, rgba(0, 102, 0, 0.15) 0%, transparent 35%),
+                radial-gradient(circle at 75% 44%, rgba(153, 0, 0, 0.15) 0%, transparent 35%),
+                radial-gradient(circle at 50% 80%, rgba(0, 0, 0, 0.1) 0%, transparent 30%);
+        }
+        .custom-shape-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        .custom-shape-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 70px;
+        }
+        .custom-shape-divider .shape-fill {
+            fill: #f3f4f6;
+        }
+
+        /* Kenyan-inspired styles */
+        .glassmorphism {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            border-radius: 16px;
+        }
+        .category-card:hover {
+             transform: translateY(-5px) scale(1.03);
+             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+        .artist-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Header Styles with Kenyan colors */
+        .header-gradient {
+            background: linear-gradient(to right, #006600, #cc0000);
+        }
+        .header-glassmorphism {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 18px;
+        }
+        
+        /* Kenyan pattern background */
+        .kenyan-pattern {
+            background-color: #222;
+            background-image: repeating-linear-gradient(45deg, #006600 0, #006600 10px, transparent 10px, transparent 20px),
+                             repeating-linear-gradient(-45deg, #990000 0, #990000 10px, transparent 10px, transparent 20px);
+            background-size: 50px 50px;
+            background-opacity: 0.1;
+        }
+        
+        /* Buttons with Kenyan color scheme */
+        .btn-kenyan-green {
+            background-color: #006600;
+        }
+        .btn-kenyan-green:hover {
+            background-color: #008800;
+        }
+        .btn-kenyan-red {
+            background-color: #cc0000;
+        }
+        .btn-kenyan-red:hover {
+            background-color: #ff0000;
+        }
+        .btn-kenyan-black {
+            background-color: #222;
+        }
+        .btn-kenyan-black:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Hero Section -->
+    <header class="relative h-screen">
+        <div class="absolute inset-0 z-0 overflow-hidden">
+            <img src="d.jpeg" alt="Background" class="w-full h-full object-cover opacity-100">
+        </div>
+        <div class="absolute inset-0 bg-black bg-opacity-60 z-10"></div>
+        
+        <nav class="bg-transparent shadow-lg fixed w-full z-50 glassmorphism">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex">
+                        <div class="flex-shrink-0 flex items-center">
+                            <span class="playfair text-3xl font-bold text-green-500">E-Art</span>
+                        </div>
+                        <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                            <a href="index.html" class="border-green-500 text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">Home</a>
+                            <a href="collections.html" class="border-transparent text-gray-300 hover:border-green-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">Marketplace</a>
+                            <a href="artists.html" class="border-transparent text-gray-300 hover:border-green-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">Artists</a>
+                            <a href="about..html" class="border-transparent text-gray-300 hover:border-green-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">About</a>
+                            <a href="contact.html" class="border-transparent text-gray-300 hover:border-green-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">Contact</a>
+                        </div>
+                    </div>
+                    
+            <div x-show="isOpen" class="sm:hidden bg-gray-900">
+                <div class="pt-2 pb-3 space-y-1">
+                    <a href="index.html" class="bg-green-800 border-green-500 text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
+                    <a href="collections.html" class="border-transparent text-gray-300 hover:bg-gray-800 hover:border-green-500 hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors">Marketplace</a>
+                    <a href="artists.html" class="border-transparent text-gray-300 hover:bg-gray-800 hover:border-green-500 hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors">Artists</a>
+                    <a href="about.html" class="border-transparent text-gray-300 hover:bg-gray-800 hover:border-green-500 hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors">About</a>
+                    <a href="contact.html" class="border-transparent text-gray-300 hover:bg-gray-800 hover:border-green-500 hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors">Contact</a>
+                </div>
+                
+        </nav>
+        
+        <div class="relative z-20 flex flex-col items-center justify-center h-full text-center px-6">
+            <h2 class="safari-font text-4xl md:text-6xl lg:text-7xl font-bold mb-4">
+                <span class="text-yellow-400">DISCOVER</span> & <span class="text-red-400">COLLECT</span>
+            </h2>
+            <p class="text-xl md:text-2xl max-w-2xl mb-8">Embark on an artistic journey through extraordinary creations from emerging and established artists</p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#explore" class="gradient-bg px-8 py-3 rounded-full text-lg font-semibold neon-shadow hover:opacity-60 transition-opacity safari-font">EXPLORE ART</a>
+                <a href="#artists" class="bg-transparent border-2 border-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-white hover:text-gray-900 transition-all safari-font">MEET ARTISTS</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Featured Art Section -->
+    <section id="explore" class="py-20 px-6 md:px-16">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="safari-font text-3xl md:text-5xl font-bold mb-2">FEATURED <span class="text-yellow-400">ARTWORKS</span></h2>
+                <div class="w-24 h-1 gradient-bg mx-auto mt-4 mb-6"></div>
+                <p class="max-w-3xl mx-auto text-gray-300 text-lg">Discover unique pieces that speak to your soul</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Artwork Cards -->
+                <div class="artwork-card bg-gray-800 rounded-xl p-6 transition-all duration-300">
+                    <div class="h-64 mb-6 rounded-lg overflow-hidden">
+                        <img src="1.jpeg" alt="Abstract Painting" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="safari-font text-xl font-bold mb-2">COSMIC DREAMS</h3>
+                    <p class="text-yellow-400 mb-3">By Bernard Mumbe</p>
+                    <p class="text-gray-300 mb-4">Abstract acrylic painting exploring the boundaries between dreams and reality.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl font-bold">2,500</span>
+                        <a href="#" class="gradient-bg px-4 py-2 rounded-full text-sm font-semibold neon-shadow">ACQUIRE</a>
+                    </div>
+                </div>
+                
+                <div class="artwork-card bg-gray-800 rounded-xl p-6 transition-all duration-300">
+                    <div class="h-64 mb-6 rounded-lg overflow-hidden">
+                        <img src="1.jpg" alt="Sculpture" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="safari-font text-xl font-bold mb-2">AZURE SERENITY</h3>
+                    <p class="text-yellow-400 mb-3">By Marcus Chen</p>
+                    <p class="text-gray-300 mb-4">Bronze sculpture capturing the fluidity of water in solid form.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl font-bold">$4,800</span>
+                        <a href="#" class="gradient-bg px-4 py-2 rounded-full text-sm font-semibold neon-shadow">ACQUIRE</a>
+                    </div>
+                </div>
+                
+                <div class="artwork-card bg-gray-800 rounded-xl p-6 transition-all duration-300">
+                    <div class="h-64 mb-6 rounded-lg overflow-hidden">
+                        <img src="3.jpg" alt="Digital Art" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="safari-font text-xl font-bold mb-2">NEURAL PATHWAYS</h3>
+                    <p class="text-yellow-400 mb-3">By Aisha Johnson</p>
+                    <p class="text-gray-300 mb-4">Digital artwork exploring the intersection of technology and human consciousness.</p>
+                    <div class="flex items-center justify-between">
+                        <span class="text-xl font-bold">1,750</span>
+                        <a href="#" class="gradient-bg px-4 py-2 rounded-full text-sm font-semibold neon-shadow">ACQUIRE</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="gallery.html" class="inline-block border-2 border-yellow-400 text-yellow-400 px-8 py-3 rounded-full safari-font hover:bg-yellow-400 hover:text-gray-900 transition-all">VIEW ALL ARTWORKS</a>
+            </div>
+        </div>
+    </section>
+    <section id="categories" class="py-16 md:py-24 relative">
+        <div class="absolute inset-0 z-0">
+            <img src="d.jpeg" alt="Kenyan Art Background" class="w-full h-full object-cover opacity-60" />
+            <div class="absolute inset-0 bg-gradient-to-br from-black via-transparent to-black opacity-80"></div>
+        </div>
+        
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="playfair text-4xl md:text-5xl font-bold text-white">Explore Kenyan Art</h2>
+                <p class="mt-4 text-xl text-gray-300 max-w-3xl mx-auto inter">Find your perfect piece through our curated Kenyan art categories</p>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+                <div class="category-card bg-black bg-opacity-50 backdrop-filter backdrop-blur-md rounded-xl p-6 text-center transition transform hover:scale-105 border border-green-900">
+                    <div class="w-16 h-16 mx-auto bg-green-700 rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 playfair">Maasai Art</h3>
+                    <p class="text-gray-300 inter">Traditional beadwork and vibrant patterns</p>
+                </div>
+                
+                <div class="category-card bg-black bg-opacity-50 backdrop-filter backdrop-blur-md rounded-xl p-6 text-center transition transform hover:scale-105 border border-green-900">
+                    <div class="w-16 h-16 mx-auto bg-red-700 rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 playfair">Contemporary</h3>
+                    <p class="text-gray-300 inter">Modern Kenyan creative expressions</p>
+                </div>
+                
+                <div class="category-card bg-black bg-opacity-50 backdrop-filter backdrop-blur-md rounded-xl p-6 text-center transition transform hover:scale-105 border border-green-900">
+                    <div class="w-16 h-16 mx-auto bg-yellow-600 rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h6a2 2 0 012 2v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9zM9 3v7m0-0c0 1.609-2.343 2.907-4 3M15 17v2a2 2 0 002 2h2a2 2 0 002-2v-7a2 2 0 00-2-2h-4a2 2 0 00-2 2v7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 playfair">Kisii Soapstone</h3>
+                    <p class="text-gray-300 inter">Hand-carved stone sculptures</p>
+                </div>
+                
+                <div class="category-card bg-black bg-opacity-50 backdrop-filter backdrop-blur-md rounded-xl p-6 text-center transition transform hover:scale-105 border border-green-900">
+                    <div class="w-16 h-16 mx-auto bg-black rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-4c0-1.519-1.236-2.807-2.764-3.091M19 17v-4c0-1.519-1.236-2.807-2.764-3.091M3 11h16v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6zM15 10v2a1 1 0 01-1 1h-2a1 1 0 01-1-1v-2a1 1 0 011-1h2a1 1 0 011 1z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2 playfair">Kikoi Textiles</h3>
+                    <p class="text-gray-300 inter">Traditional fabric art and designs</p>
+                </div>
+            </div>
+        
+            <div class="text-center mt-12">
+                <button class="px-8 py-3 bg-green-800 hover:bg-green-700 text-white rounded-lg font-bold transition transform hover:scale-105 inter">
+                    Explore All Categories
+                </button>
+            </div>
+        </div>
+    </section>
+
+  
+            
+   
+
+    <!-- Art Categories Section -->
+    <section class="py-20 px-6 md:px-16 bg-gray-800">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="safari-font text-3xl md:text-5xl font-bold mb-2"><span class="text-red-400">ART</span> CATEGORIES</h2>
+                <div class="w-24 h-1 gradient-bg mx-auto mt-4 mb-6"></div>
+                <p class="max-w-3xl mx-auto text-gray-300 text-lg">Explore different styles and mediums from our diverse collection</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="relative rounded-xl overflow-hidden h-64 group">
+                    <img src="4.jpg" alt="Paintings" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="safari-font text-xl font-bold mb-1">PAINTINGS</h3>
+                        <p class="text-gray-300 text-sm">6 artworks</p>
+                    </div>
+                </div>
+                
+                <div class="relative rounded-xl overflow-hidden h-64 group">
+                    <img src="d.jpeg" alt="Sculptures" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="safari-font text-xl font-bold mb-1">SCULPTURES</h3>
+                        <p class="text-gray-300 text-sm">8 artworks</p>
+                    </div>
+                </div>
+                
+                <div class="relative rounded-xl overflow-hidden h-64 group">
+                    <img src="s.jpeg" alt="Digital Art" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="safari-font text-xl font-bold mb-1">DIGITAL ART</h3>
+                        <p class="text-gray-300 text-sm">4 artworks</p>
+                    </div>
+                </div>
+                
+                <div class="relative rounded-xl overflow-hidden h-64 group">
+                    <img src="abstract-elegance-6-.jpeg" alt="Photography" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
+                    <div class="absolute bottom-0 left-0 p-6">
+                        <h3 class="safari-font text-xl font-bold mb-1">PHOTOGRAPHY</h3>
+                        <p class="text-gray-300 text-sm">7 artworks</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artists Section -->
+
+    <section id="artists" class="py-20 px-6 md:px-16">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="safari-font text-3xl md:text-5xl font-bold mb-2">FEATURED <span class="text-yellow-400">ARTISTS</span></h2>
+                <div class="w-24 h-1 gradient-bg mx-auto mt-4 mb-6"></div>
+                <p class="max-w-3xl mx-auto text-gray-300 text-lg">Meet the creative minds behind the extraordinary artworks</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                
+                <!-- Artist Cards -->
+                <div class="bg-gray-800 rounded-xl overflow-hidden transition-transform hover:transform hover:scale-105">
+                    <div class="h-64 overflow-hidden">
+                        <img src="c.jpg" alt="Artist" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="safari-font text-xl font-bold mb-1">BENARD KARUMA</h3>
+                        <p class="text-yellow-400 mb-3">Abstract Expressionist</p>
+                        <p class="text-sm text-gray-300">Creating vibrant emotional landscapes through color and form .Best graphic text guy in town</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-xl overflow-hidden transition-transform hover:transform hover:scale-105">
+                    <div class="h-64 overflow-hidden">
+                        <img src="v.jpg" alt="Artist" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="safari-font text-xl font-bold mb-1"></h3>FREDRICK KAMAU</h3>
+                        <p class="text-red-400 mb-3">Sales Manager </p>
+                        <p class="text-sm text-gray-300">Transforming  into flowing organic forms . </p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-xl overflow-hidden transition-transform hover:transform hover:scale-105">
+                    <div class="h-64 overflow-hidden">
+                        <img src="we.jpg" alt="Artist" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="safari-font text-xl font-bold mb-1">GEORGE NGUGI</h3>
+                        <p class="text-yellow-400 mb-3">Digital Artist</p>
+                        <p class="text-sm text-gray-300">Blending technology and traditional art techniques</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-xl overflow-hidden transition-transform hover:transform hover:scale-105">
+                    <div class="h-64 overflow-hidden">
+                        <img src="we.jpg" alt="Artist" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="safari-font text-xl font-bold mb-1">DAVID OKAFOR</h3>
+                        <p class="text-red-400 mb-3">Photographer</p>
+                        <p class="text-sm text-gray-300">Capturing the beauty of urban landscapes and human stories</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="artists.html" class="inline-block border-2 border-red-400 text-red-400 px-8 py-3 rounded-full safari-font hover:bg-red-400 hover:text-gray-900 transition-all">MEET ALL ARTISTS</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sell Art Section -->
+    <section class="py-20 px-6 md:px-16 bg-gray-800 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/3 h-full opacity-10">
+            <img src="4.jpg" alt="Decorative Art" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div>
+                    <h2 class="safari-font text-3xl md:text-5xl font-bold mb-6">SHARE YOUR <span class="text-yellow-400">CREATION</span> WITH THE WORLD</h2>
+                    <p class="text-gray-300 mb-8">Join our community of artists and showcase your work to art lovers and collectors worldwide. Art Safari provides a platform for artists at all stages of their careers.</p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center"><span class="text-yellow-400 mr-3">✓</span> Easy setup with artist profile and portfolio</li>
+                        <li class="flex items-center"><span class="text-yellow-400 mr-3">✓</span> Global audience of collectors and enthusiasts</li>
+                        <li class="flex items-center"><span class="text-yellow-400 mr-3">✓</span> Secure payment processing</li>
+                        <li class="flex items-center"><span class="text-yellow-400 mr-3">✓</span> Marketing and promotion opportunities</li>
+                    </ul>
+                    <a href="sell.html" class="gradient-bg px-8 py-3 rounded-full text-lg font-semibold neon-shadow inline-block hover:opacity-90 transition-opacity safari-font">START SELLING</a>
+                </div>
+                
+                <div class="bg-gray-900 rounded-xl p-8 neon-shadow">
+                    <h3 class="safari-font text-2xl font-bold mb-6 text-center">JOIN AS AN ARTIST</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2 safari-font">FULL NAME</label>
+                            <input type="text" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2 safari-font">EMAIL</label>
+                            <input type="email" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2 safari-font">ART MEDIUM/STYLE</label>
+                            <select class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                                <option>Painting</option>
+                                <option>Sculpture</option>
+                                <option>Digital Art</option>
+                                <option>Photography</option>
+                                <option>Mixed Media</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium mb-2 safari-font">PORTFOLIO URL (OPTIONAL)</label>
+                            <input type="url" class="w-full bg-gray-800 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                        </div>
+                        
+                        <button type="submit" class="w-full gradient-bg py-4 rounded-lg font-bold text-lg safari-font hover:opacity-90 transition-opacity">SUBMIT APPLICATION</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section class="py-20 px-6 md:px-16">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="safari-font text-3xl md:text-5xl font-bold mb-2">UPCOMING <span class="text-red-400">EVENTS</span></h2>
+                <div class="w-24 h-1 gradient-bg mx-auto mt-4 mb-6"></div>
+                <p class="max-w-3xl mx-auto text-gray-300 text-lg">Join us for exhibitions, workshops, and artist talks</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-800 rounded-xl overflow-hidden">
+                    <div class="h-64 relative">
+                        <img src="a.jpg" alt="Exhibition" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-red-500 text-white px-4 py-1 rounded safari-font">APR 15</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="safari-font text-xl font-bold mb-2">EMERGING VISIONS: NEW ARTIST SHOWCASE</h3>
+                        <p class="text-gray-300 mb-4">A spotlight on the most exciting new talent in contemporary art. Join us for the opening reception and meet the artists.</p>
+                        <div class="flex items-center text-sm text-gray-400 mb-6">
+                            <span class="mr-4">📍 Art Safari Gallery</span>
+                            <span>🕖 6:00 PM - 9:00 PM</span>
+                        </div>
+                        <a href="#" class="gradient-bg px-6 py-2 rounded-full text-sm font-semibold neon-shadow inline-block hover:opacity-90 transition-opacity safari-font">RSVP</a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-xl overflow-hidden">
+                    <div class="h-64 relative">
+                        <img src="2.jpeg" alt="Workshop" class="w-full h-full object-cover">
+                        <div class="absolute top-4 left-4 bg-red-500 text-white px-4 py-1 rounded safari-font">APR 22</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="safari-font text-xl font-bold mb-2">DIGITAL ART MASTERCLASS WITH AISHA JOHNSON</h3>
+                        <p class="text-gray-300 mb-4">Learn cutting-edge digital art techniques from one of our featured artists. Limited spots available.</p>
+                        <div class="flex items-center text-sm text-gray-400 mb-6">
+                            <span class="mr-4">📍 Online Workshop</span>
+                            <span>🕖 2:00 PM - 5:00 PM</span>
+                        </div>
+                        <a href="#" class="gradient-bg px-6 py-2 rounded-full text-sm font-semibold neon-shadow inline-block hover:opacity-90 transition-opacity safari-font">REGISTER</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collector Testimonials -->
+    <section class="py-20 px-6 md:px-16 bg-gray-800">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="safari-font text-3xl md:text-5xl font-bold mb-2">ART <span class="text-yellow-400">COLLECTORS</span> SAY</h2>
+                <div class="w-24 h-1 gradient-bg mx-auto mt-4 mb-6"></div>
+                <p class="max-w-3xl mx-auto text-gray-300 text-lg">Hear from those who have found their perfect pieces</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-900 p-6 rounded-xl relative">
+                    <div class="text-5xl text-yellow-500 absolute -top-4 left-4 opacity-50">"</div>
+                    <p class="text-gray-300 mb-4 pt-6">Art Safari introduced me to artists I never would have discovered otherwise. The piece I purchased has become the focal point of my living room and sparks conversation with every visitor.</p>
+                    <div class="flex items-center mt-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-600 mr-4"></div>
+                        <div>
+                            <p class="font-bold">Michael L.</p>
+                            <p class="text-sm text-gray-400">Art Collector</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900 p-6 rounded-xl relative">
+                    <div class="text-5xl text-yellow-500 absolute -top-4 left-4 opacity-50">"</div>
+                    <p class="text-gray-300 mb-4 pt-6">The curation on this platform is exceptional. I've found pieces that resonate with me on a deep level, and the process of acquiring them has been seamless and transparent.</p>
+                    <div class="flex items-center mt-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-600 mr-4"></div>
+                        <div>
+                            <p class="font-bold">Sophia T.</p>
+                            <p class="text-sm text-gray-400">Interior Designer</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900 p-6 rounded-xl relative">
+                    <div class="text-5xl text-yellow-500 absolute -top-4 left-4 opacity-50">"</div>
+                    <p class="text-gray-300 mb-4 pt-6">As someone new to collecting art, I appreciated the detailed information about each artwork and artist. It helped me make informed decisions and build a small collection I'm proud of.</p>
+                    <div class="flex items-center mt-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-600 mr-4"></div>
+                        <div>
+                            <p class="font-bold">James K.</p>
+                            <p class="text-sm text-gray-400">First-time Collector</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="py-20 px-6 md:px-16 bg-gray-900 relative">
+        <div class="absolute inset-0 opacity-10">
+            <img src="1.jpeg" alt="Background Pattern" class="w-full h-full object-cover">
+        </div>
+        
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="text-center mb-10">
+                <h2 class="safari-font text-3xl md:text-4xl font-bold mb-2">STAY IN THE <span class="text-red-400">LOOP</span></h2>
+                <p class="max-w-2xl mx-auto text-gray-300">Subscribe to our newsletter for the latest exhibitions, artist spotlights, and exclusive invitations</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row gap-4">
+                <input type="email" placeholder="Your email address" class="flex-grow bg-gray-800 border border-gray-700 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                <button class="gradient-bg px-8 py-3 rounded-lg font-semibold neon-shadow hover:opacity-90 transition-opacity safari-font whitespace-nowrap">SUBSCRIBE</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 pt-16 pb-8 px-6 md:px-16 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-16">
+                <!-- Company Info -->
+                <div>
+                    <div class="gradient-bg p-2 rounded-lg neon-shadow inline-block mb-4">
+                        <h3 class="safari-font font-bold text-xl text-white">E-ART </h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">Connecting artists with art lovers and collectors. Discover, appreciate, and acquire extraordinary art in our curated marketplace.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-all duration-300 social-icon">
+                            <span class="sr-only">Instagram</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all duration-300 social-icon">
+                            <span class="sr-only">Twitter</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all duration-300 social-icon">
+                            <span class="sr-only">LinkedIn</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all duration-300 social-icon">
+                            <span class="sr-only">Pinterest</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Featured Artists</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Exhibitions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Art Collections</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Blog & Articles</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-6">Support</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Shipping & Returns</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Artist Submissions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Cookie Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-6">Join Our Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Stay updated with new art, exhibitions, and exclusive offers.</p>
+                    <form class="space-y-3">
+                        <div class="relative">
+                            <input type="email" placeholder="Your email address" class="w-full px-4 py-3 bg-transparent input-gradient rounded-lg border border-gray-700 focus:border-gray-500 focus:outline-none text-gray-300">
+                        </div>
+                        <button type="submit" class="w-full px-4 py-3 btn-gradient rounded-lg text-white font-medium">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Bottom Section -->
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">&copy; 2025 ART SAFARI. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Privacy</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Terms</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Sitemap</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </body>
+    </html>
+   
