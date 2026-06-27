@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earthgalla - Art Gallery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'display': ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'scale-in': 'scaleIn 0.3s ease-out',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    backdropBlur: {
+                        xs: '2px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .masonry {
+            column-count: 1;
+            column-gap: 1rem;
+        }
+        @media (min-width: 640px) {
+            .masonry { column-count: 2; }
+        }
+        @media (min-width: 768px) {
+            .masonry { column-count: 3; }
+        }
+        @media (min-width: 1024px) {
+            .masonry { column-count: 4; }
+        }
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+        }
+        .glass-morphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .gradient-border {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            padding: 2px;
+            border-radius: 12px;
+        }
+        .gradient-border-inner {
+            background: white;
+            border-radius: 10px;
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .gradient-bg {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+        }
+        .btn-gradient {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+        }
+        .input-gradient {
+            background: linear-gradient(45deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+        }
+        .safari-font {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+        }
+        .neon-shadow {
+            box-shadow: 0 0 10px rgba(102, 126, 234, 0.5);
+        }
+        .social-icon:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.2);
+        }
+         /* Floating particles */
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            animation: floatParticles 20s infinite linear;
+        }
+        
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 2s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 4s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 6s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 8s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 10s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 12s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 14s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 16s; }
+        
+        @keyframes floatParticles {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        section {
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-black via-black to-orange-900 min-h-screen text-white font-display">
+    <!-- Floating particles background -->
+    <div class="particles fixed inset-0 z-0">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    
+   
+   
+   <header class="relative z-50 px-6 py-8 pt-28">
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 w-full z-50 glassmorphism">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo & Links -->
+                <div class="flex items-center">
+                    <span class="text-4xl font-black uppercase tracking-wider gradient-text">E_ARTGALLA</span>
+                    <div class="hidden md:flex space-x-8 ml-12">
+                        <a href="index.php" class="text-slate-300 hover:text-emerald-400 transition-colors font-semibold">Home</a>
+                        <a href="collections.html" class="text-slate-300 hover:text-emerald-400 transition-colors font-semibold">Marketplace</a>
+                        <a href="artists.html" class="text-slate-300 hover:text-emerald-400 transition-colors font-semibold">Artists</a>
+                        <a href="about.html" class="text-slate-300 hover:text-emerald-400 transition-colors font-semibold">About</a>
+                        <a href="contact.php" class="text-slate-300 hover:text-emerald-400 transition-colors font-semibold">Contact</a>
+                        <a href="submi.php" class="text-slate-300 hover:text-emerald-400 transition-colors font-semibold">Submit Art</a>
+                        <a href="cart.php" class="border-green-500 text-white border-b-2 px-1 pt-1 text-sm font-medium">
+                            Cart (<span id="cart-count">0</span>)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Get Started Button -->
+                <div class="hidden md:block">
+                    <a href="contact.php" class="px-6 py-3 bg-emerald-600 text-white rounded-full hover:bg-emerald-700 transition-colors font-semibold">Get Started</a>
+                </div>
+
+                <!-- Mobile Menu Toggle -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-toggle" class="text-white focus:outline-none">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-7xl mx-auto">
+        <div class="glass-morphism rounded-2xl px-8 py-6 animate-fade-in mt-6 md:mt-24">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-xl flex items-center justify-center animate-float">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+                            Earthgalla
+                        </h1>
+                        <p class="text-slate-300 text-sm">Curated Digital Art Collection</p>
+                    </div>
+                </div>
+
+                <button class="glass-morphism px-6 py-3 rounded-xl hover:bg-white/20 transition-all duration-300 group">
+                    <span class="flex items-center space-x-2">
+                        <svg class="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                        </svg>
+                        <span>Upload Art</span>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+    <!-- Gallery Description -->
+    <section class="px-6 pb-12">
+        <div class="max-w-4xl mx-auto text-center animate-fade-in">
+            <h2 class="text-5xl font-bold mb-6 bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 bg-clip-text text-transparent">
+                Art Gallery
+            </h2>
+            <p class="text-xl text-slate-300 leading-relaxed">
+                Discover extraordinary digital artworks from talented creators around the world. Each piece tells a unique story and captures the essence of modern digital artistry.
+            </p>
+        </div>
+    </section>
+
+    <!-- Gallery Grid -->
+    <main class="px-6 pb-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="masonry" id="galleryGrid">
+                <!-- Gallery items will be populated by JavaScript -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal for full-size view -->
+    <div id="imageModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="relative max-w-4xl max-h-full">
+            <img id="modalImage" class="max-w-full max-h-full object-contain rounded-2xl shadow-2xl" alt="">
+            <div class="absolute top-4 right-4 flex space-x-2">
+                <button id="downloadBtn" class="glass-morphism p-3 rounded-xl hover:bg-white/20 transition-all duration-300 group">
+                    <svg class="w-6 h-6 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                    </svg>
+                </button>
+                <button id="closeModal" class="glass-morphism p-3 rounded-xl hover:bg-white/20 transition-all duration-300 group">
+                    <svg class="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="absolute bottom-4 left-4 glass-morphism px-4 py-2 rounded-xl">
+                <p id="modalTitle" class="font-semibold"></p>
+                <p id="modalArtist" class="text-sm text-slate-300"></p>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-50 bg-black/95 hidden">
+        <div class="flex justify-end p-6">
+            <button id="close-mobile-menu" class="text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <div class="flex flex-col items-center justify-center h-full   bg-gray-500  bg-opacity-80  " >
+            <div class="w-24 h-1 gradient-bg mb-6"></div>
+            <h2 class="safari-font text-3xl font-bold text-white mb-6">MENU</h2>
+            <div class="w-24 h-1 gradient-bg mb-6"></div>
+            <a href="index.html" class="text-3xl font-semibold text-white mb-8 hover:text-emerald-400">Home</a>
+            <a href="collection.html" class="text-3xl font-semibold text-white mb-8 hover:text-emerald-400">Marketplace</a>
+            <a href="about.html" class="text-3xl font-semibold text-white mb-8 hover:text-emerald-400">Artists</a>
+            <a href="About.html" class="text-3xl font-semibold text-white mb-8 hover:text-emerald-400">About</a>
+            <a href="contact.php" class="text-3xl font-semibold text-white mb-8 hover:text-emerald-400">Contact</a>
+            <a href="submi.php" class="text-3xl font-semibold text-white mb-8 hover:text-emerald-400">Submit art</a>
+             <a href="cart.php" class="border-green-500 text-white border-b-2 px-1 pt-1 text-sm font-medium">
+                            Cart (<span id="cart-count">0</span>)
+                        </a>
+            
+            <a href="contact.php" class="mt-4 px-8 py-3 bg-orange-600 text-blue rounded-full hover:bg-red-700 transition-colors font-semibold">Get Started</a>
+        </div>
+    </div>
+
+    <!-- Add a semi-transparent overlay for page transitions -->
+    <div id="page-transition" class="fixed inset-0 bg-black opacity-0 pointer-events-none z-[100] transition-opacity duration-500"></div>
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close mobile menu when clicking a navigation link
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Add page transition effect
+                const pageTransition = document.getElementById('page-transition');
+                pageTransition.classList.add('opacity-50');
+                pageTransition.classList.remove('pointer-events-none');
+                
+                setTimeout(() => {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                    
+                    // Remove transition effect
+                    setTimeout(() => {
+                        pageTransition.classList.remove('opacity-50');
+                        pageTransition.classList.add('pointer-events-none');
+                    }, 300);
+                }, 300);
+            });
+        });
+
+        // Parallax effect for header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const scrollPosition = window.scrollY;
+            header.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
+        });
+
+        // Intersection Observer for revealing elements on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeIn');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add animation classes
+        document.head.insertAdjacentHTML('beforeend', `
+            <style>
+                @keyframes fadeIn {
+                    from { opacity: 90; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                .animate-fadeIn {
+                    animation: fadeIn 0.8s ease forwards;
+                }
+                section {
+                    opacity: 60;
+                }
+            </style>
+        `);
+    </script>
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 pt-16 pb-8 px-6 md:px-16 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-10 mb-16">
+                <!-- Company Info -->
+                <div>
+                    <div class="gradient-bg p-2 rounded-lg neon-shadow inline-block mb-4">
+                        <h3 class="safari-font font-bold text-xl text-white">E-ART </h3>
+                    </div>
+                    <p class="text-gray-400 mb-4">Connecting artists with art lovers and collectors. Discover, appreciate, and acquire extraordinary art in our curated marketplace.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-all duration-300 social-icon">
+                            <span class="sr-only">Instagram</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all duration-300 social-icon">
+                            <span class="sr-only">Twitter</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all duration-300 social-icon">
+                            <span class="sr-only">LinkedIn</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-all duration-300 social-icon">
+                            <span class="sr-only">Pinterest</span>
+                            <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-6">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Featured Artists</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Exhibitions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Art Collections</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Blog & Articles</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Support -->
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-6">Support</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">FAQ</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Shipping & Returns</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Artist Submissions</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Privacy Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Terms of Service</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition-all duration-300">Cookie Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-white text-lg font-semibold mb-6">Join Our Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Stay updated with new art, exhibitions, and exclusive offers.</p>
+                    <form class="space-y-3">
+                        <div class="relative">
+                            <input type="email" placeholder="Your email address" class="w-full px-4 py-3 bg-transparent input-gradient rounded-lg border border-gray-700 focus:border-gray-500 focus:outline-none text-gray-300">
+                        </div>
+                        <button type="submit" class="w-full px-4 py-3 btn-gradient rounded-lg text-white font-medium">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Bottom Section -->
+            <div class="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">&copy; 2025 ART SAFARI. All rights reserved.</p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Privacy</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Terms</a>
+                    <a href="#" class="text-gray-500 hover:text-gray-300 text-sm">Sitemap</a>
+                    
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Sample artwork data
+        const artworks = [
+            {
+                id: 1,
+                src: 'Happiness.jpeg',
+                title: 'Abstract Cosmos',
+                artist: 'Digital Dreams Studio',
+                price: '$299',
+                category: 'Abstract'
+            },
+            {
+                id: 2,
+                src: 'imgs/2.jpeg',
+                title: 'Neon Cityscape',
+                artist: 'CyberArt Collective',
+                price: '$450',
+                category: 'Digital'
+            },
+            {
+                id: 3,
+                src: 'imgs/1.jpeg',
+                title: 'Geometric Harmony',
+                artist: 'ModernPixel',
+                price: '$220',
+                category: 'Geometric'
+            },
+            {
+                id: 4,
+                src: 'imgs/d.jpeg',
+                title: 'Fluid Dynamics',
+                artist: 'WaveForm Arts',
+                price: '$380',
+                category: 'Abstract'
+            },
+            {
+                id: 5,
+                src: 'imgs/1.jpg',
+                title: 'Digital Portrait',
+                artist: 'PortraitMaster',
+                price: '$520',
+                category: 'Portrait'
+            },
+            {
+                id: 6,
+                src: 'imgs/a.jpg',
+                title: 'Chromatic Waves',
+                artist: 'ColorFlow Studio',
+                price: '$340',
+                category: 'Abstract'
+            },
+            {
+                id: 7,
+                src: 'imgs/4.jpg',
+                title: 'Fractal Dreams',
+                artist: 'MathArt Collective',
+                price: '$275',
+                category: 'Fractal'
+            },
+            {
+                id: 8,
+                src: 'imgs/11.jpeg',
+                title: 'Digital Landscape',
+                artist: 'VirtualVista',
+                price: '$410',
+                category: 'Landscape'
+            },
+            {
+                id: 9,
+                src: 'imgs/22.jpeg',
+                title: 'Cyber Punk',
+                artist: 'FutureNeon',
+                price: '$390',
+                category: 'Cyberpunk'
+            },
+            {
+                id: 10,
+                src: 'imgs/3.avif',
+                title: 'Minimalist Forms',
+                artist: 'CleanDesign Co',
+                price: '$180',
+                category: 'Minimalist'
+            }
+        ];
+
+        function createGalleryItem(artwork) {
+            return `
+                <div class="masonry-item animate-scale-in cursor-pointer group" data-artwork='${JSON.stringify(artwork)}'>
+                    <div class="gradient-border hover:shadow-2xl hover:shadow-purple-500/25 transition-all duration-500 hover:-translate-y-2">
+                        <div class="gradient-border-inner overflow-hidden">
+                            <div class="relative overflow-hidden">
+                                <img src="${artwork.src}" alt="${artwork.title}" 
+                                     class="w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                     loading="lazy">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300">
+                                    <div class="absolute bottom-4 left-4 right-4">
+                                        <h3 class="text-white font-bold text-lg mb-1">${artwork.title}</h3>
+                                        <p class="text-gray-300 text-sm mb-2">by ${artwork.artist}</p>
+                                        <div class="flex items-center justify-between">
+                                            <span class="text-emerald-400 font-bold text-lg">${artwork.price}</span>
+                                            <div class="flex space-x-2">
+                                                <button class="download-btn glass-morphism p-2 rounded-lg hover:bg-white/20 transition-all duration-300" data-src="${artwork.src}" data-title="${artwork.title}">
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3M3 17V7a2 2 0 012-2h6l2 2h6a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                                                    </svg>
+                                                </button>
+                                                <span class="glass-morphism px-3 py-1 rounded-lg text-xs">${artwork.category}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function loadGallery() {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = artworks.map(artwork => createGalleryItem(artwork)).join('');
+            
+            // Add staggered animation
+            const items = grid.querySelectorAll('.masonry-item');
+            items.forEach((item, index) => {
+                item.style.animationDelay = `${index * 0.1}s`;
+            });
+        }
+
+        function downloadImage(src, filename) {
+            const link = document.createElement('a');
+            link.href = src;
+            link.download = filename || 'earthgalla-artwork.jpg';
+            link.target = '_blank';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Modal functionality
+        const modal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalArtist = document.getElementById('modalArtist');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const closeModal = document.getElementById('closeModal');
+
+        function openModal(artwork) {
+            modalImage.src = artwork.src;
+            modalTitle.textContent = artwork.title;
+            modalArtist.textContent = `by ${artwork.artist}`;
+            downloadBtn.onclick = () => downloadImage(artwork.src, `${artwork.title.replace(/\s+/g, '-').toLowerCase()}.jpg`);
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModalFn() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            loadGallery();
+            
+            // Gallery item clicks
+            document.addEventListener('click', (e) => {
+                const item = e.target.closest('.masonry-item');
+                if (item && !e.target.closest('.download-btn')) {
+                    const artwork = JSON.parse(item.dataset.artwork);
+                    openModal(artwork);
+                }
+                
+                // Download button clicks
+                if (e.target.closest('.download-btn')) {
+                    e.stopPropagation();
+                    const btn = e.target.closest('.download-btn');
+                    downloadImage(btn.dataset.src, `${btn.dataset.title.replace(/\s+/g, '-').toLowerCase()}.jpg`);
+                }
+            });
+            
+            closeModal.onclick = closeModalFn;
+            modal.onclick = (e) => {
+                if (e.target === modal) closeModalFn();
+            };
+            
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') closeModalFn();
+            });
+        });
+    </script>
+</body>
+</html>

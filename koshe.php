@@ -1,3 +1,7 @@
+<?php
+session_start();
+include("config/connect.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -182,6 +186,7 @@
     
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center relative overflow-hidden py-20">
+        
         <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between relative z-10">
             <div class="md:w-1/2 mb-12 md:mb-0">
                 <h1 class="text-4xl md:text-6xl font-bold mb-4 animate-fade-in">
@@ -942,6 +947,16 @@
     
     <!-- Contact Section -->
     <section id="contact" class="py-20 relative">
+        <?php
+                    // Display success or error messages if they exist
+                    if (isset($_SESSION['message'])) {
+                        $message_type = $_SESSION['message_type'] ?? 'success';
+                        echo '<div class="alert alert-' . $message_type . '">' . $_SESSION['message'] . '</div>';
+                        // Clear the message after displaying it
+                        unset($_SESSION['message']);
+                        unset($_SESSION['message_type']);
+                    }
+                    ?>
         <div class="container mx-auto px-4">
             <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">Get In <span class="gradient-text">Touch</span></h2>
@@ -951,7 +966,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div class="gradient-border">
                     <div class="glass-effect p-8 rounded-lg h-full">
-                        <form>
+                        <form action="message.php" method="POST" class="space-y-6">
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                                 <div>
                                     <label for="name" class="block text-sm font-medium text-gray-400 mb-2">Your Name</label>

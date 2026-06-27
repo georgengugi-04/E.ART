@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HE-ART | About Us</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        .safari-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(90deg, #f59e0b, #ef4444);
+        }
+        
+        .neon-shadow {
+            box-shadow: 0 0 15px rgba(245, 158, 11, 0.7);
+        }
+        
+        .artwork-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
+        }
+        .playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .inter {
+          font-family: 'Inter', sans-serif;
+        }
+        /* Kenyan flag-inspired colors */
+        .bg-gradient-kenyan {
+            background: linear-gradient(90deg, #f59e0b, #ef4444);
+        }
+        .text-gradient-kenyan {
+            background: linear-gradient(to right, #006600, #cc0000);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 20px -5px rgba(0, 102, 0, 0.3), 0 8px 10px -5px rgba(153, 0, 0, 0.2);
+        }
+        .hero-pattern {
+            /* Kenyan-inspired background pattern */
+            background-color: #111;
+            background-image: 
+                radial-gradient(circle at 20% 35%, rgba(0, 102, 0, 0.15) 0%, transparent 35%),
+                radial-gradient(circle at 75% 44%, rgba(153, 0, 0, 0.15) 0%, transparent 35%),
+                radial-gradient(circle at 50% 80%, rgba(0, 0, 0, 0.1) 0%, transparent 30%);
+        }
+        .custom-shape-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        .custom-shape-divider svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 70px;
+        }
+        .custom-shape-divider .shape-fill {
+            fill: #f3f4f6;
+        }
+
+        /* Kenyan-inspired styles */
+        .glassmorphism {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            border-radius: 16px;
+        }
+        .team-card:hover {
+             transform: translateY(-5px) scale(1.03);
+             box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+        .milestone-card:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Header Styles with Kenyan colors */
+        .header-gradient {
+            background: linear-gradient(to right, #006600, #cc0000);
+        }
+        .header-glassmorphism {
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            border-radius: 18px;
+        }
+        
+        /* Kenyan pattern background */
+        .kenyan-pattern {
+            background-color: #222;
+            background-image: repeating-linear-gradient(45deg, #006600 0, #006600 10px, transparent 10px, transparent 20px),
+                             repeating-linear-gradient(-45deg, #990000 0, #990000 10px, transparent 10px, transparent 20px);
+            background-size: 50px 50px;
+            background-opacity: 0.1;
+        }
+        
+        /* Buttons with Kenyan color scheme */
+        .btn-kenyan-green {
+            background-color: #006600;
+        }
+        .btn-kenyan-green:hover {
+            background-color: #008800;
+        }
+        .btn-kenyan-red {
+            background-color: #cc0000;
+        }
+        .btn-kenyan-red:hover {
+            background-color: #ff0000;
+        }
+        .btn-kenyan-black {
+            background-color: #222;
+        }
+        .btn-kenyan-black:hover {
+            background-color: #444;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+  <!--hero -->
+  <header class="relative h-96">
+    <div class="absolute inset-0 z-0 overflow-hidden">
+      <img src="d.jpeg" alt="background" class="w-full h-full object-cover opacity-70">
+    </div>
+    <div class="absolute inset-0 bg-black bg-opacity-60 z-10"></div>
+    <nav class="bg-transparent shadow-lg fixed w-full z-50 glassmorphism">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex">
+                    <div class="flex-shrink-0 flex items-center">
+                        <span class="playfair text-3xl font-bold text-green-500">E-Art</span>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                        <a href="index.html" class="border-transparent text-gray-300 hover:border-green-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">Home</a>
+                        <a href="collections.html" class="border-transparent text-gray-300 hover:border-green-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">Marketplace</a>
+                        <a href="artists.html" class="border-transparent text-gray-300 hover:border-green-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">Artists</a>
+                        <a href="about.html" class="border-green-500 text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">About</a>
+                        <a href="contact.html" class="border-transparent text-gray-300 hover:border-green-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">Contact</a>
+                        <a href="submi.html" class="border-transparent text-gray-300 hover:border-green-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">Contact</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div x-show="isOpen" class="sm:hidden bg-gray-900">
+            <div class="pt-2 pb-3 space-y-1">
+                <a href="index.html" class="border-transparent text-gray-300 hover:bg-gray-800 hover:border-green-500 hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors">Home</a>
+                <a href="collections.html" class="border-transparent text-gray-300 hover:bg-gray-800 hover:border-green-500 hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors">Marketplace</a>
+                <a href="artists.html" class="border-transparent text-gray-300 hover:bg-gray-800 hover:border-green-500 hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors">Artists</a>
+                <a href="about.html" class="bg-green-800 border-green-500 text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium">About</a>
+                <a href="contact.html" class="border-transparent text-gray-300 hover:bg-gray-800 hover:border-green-500 hover:text-white block pl-3 pr-4 py-2 border-l-4 text-base font-medium transition-colors">Contact</a>
+               
+                <a href="submi.html" class="border-transparent text-gray-300 hover:border-green-500 hover:text-white inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="relative z-20 flex flex-col items-center justify-center h-full text-center px-6">
+        <h2 class="safari-font text-4xl md:text-6xl lg:text-7xl font-bold mb-4">
+            <span class="text-yellow-400">OUR</span> <span class="text-red-400">STORY</span>
+        </h2>
+        <p class="text-xl md:text-2xl max-w-2xl mb-8">The journey of bringing Kenyan artistry to the global stage</p>
+    </div>
+  </header>
+
+  <!-- Mission Section -->
+  <section class="py-16 md:py-24 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row gap-12 items-center">
+            <div class="md:w-1/2">
+                <div class="glassmorphism p-6 rounded-xl">
+                    <img src="2.jpeg" alt="Our Mission" class="w-full h-auto rounded-lg shadow-lg">
+                </div>
+            </div>
+            <div class="md:w-1/2">
+                <h2 class="playfair text-4xl font-bold text-white mb-6">Our Mission</h2>
+                <div class="border-l-4 border-green-500 pl-6">
+                    <p class="inter text-xl text-gray-300 mb-6">E-Art was founded with a clear mission: to showcase the rich artistic heritage of Kenya while providing a platform for local artists to reach a global audience.</p>
+                    <p class="inter text-xl text-gray-300">We believe that art is a powerful medium for cultural exchange and understanding. By connecting talented Kenyan artists with art enthusiasts worldwide, we aim to preserve cultural traditions while fostering innovation in contemporary African art.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Our Story Timeline -->
+  <section class="py-16 md:py-24 relative">
+    <div class="absolute inset-0 z-0">
+        <img src="d.jpeg" alt="Kenyan Art Background" class="w-full h-full object-cover opacity-30" />
+        <div class="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black opacity-90"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="playfair text-4xl md:text-5xl font-bold text-white">Our Journey</h2>
+            <p class="mt-4 text-xl text-gray-300 max-w-3xl mx-auto inter">From a small gallery in Nairobi to a global digital platform</p>
+        </div>
+        
+        <!-- Timeline -->
+        <div class="relative">
+            <!-- Vertical Line -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-green-700"></div>
+            
+            <!-- Timeline Items -->
+            <div class="space-y-24">
+                <!-- 2015 -->
+                <div class="relative">
+                    <div class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <div class="w-12 h-12 bg-red-700 rounded-full flex items-center justify-center border-4 border-gray-900">
+                            <span class="text-white font-bold">2024</span>
+                        </div>
+                    </div>
+                    
+                    <div class="ml-auto w-5/12 pr-8">
+                        <div class="milestone-card glassmorphism p-6 rounded-xl transition duration-300">
+                            <h3 class="playfair text-2xl font-bold text-white mb-3">The Beginning</h3>
+                            <p class="inter text-gray-300">Founded as a small physical gallery in Nairobi, featuring works from local artists with a focus on traditional Kenyan art forms.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 2018 -->
+                <div class="relative">
+                    <div class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <div class="w-12 h-12 bg-yellow-600 rounded-full flex items-center justify-center border-4 border-gray-900">
+                            <span class="text-white font-bold">2025</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mr-auto w-5/12 pl-8">
+                        <div class="milestone-card glassmorphism p-6 rounded-xl transition duration-300">
+                            <h3 class="playfair text-2xl font-bold text-white mb-3">Expansion</h3>
+                            <p class="inter text-gray-300">Opened three more galleries across Kenya and partnered with international art exhibitions to showcase Kenyan talent abroad.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 2020 -->
+                <div class="relative">
+                    <div class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <div class="w-12 h-12 bg-green-700 rounded-full flex items-center justify-center border-4 border-gray-900">
+                            <span class="text-white font-bold">2025</span>
+                        </div>
+                    </div>
+                    
+                    <div class="ml-auto w-5/12 pr-8">
+                        <div class="milestone-card glassmorphism p-6 rounded-xl transition duration-300">
+                            <h3 class="playfair text-2xl font-bold text-white mb-3">Going Digital</h3>
+                            <p class="inter text-gray-300">Launched our online platform to overcome global challenges and create a borderless marketplace for Kenyan art.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 2023 -->
+                <div class="relative">
+                    <div class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                        <div class="w-12 h-12 bg-red-700 rounded-full flex items-center justify-center border-4 border-gray-900">
+                            <span class="text-white font-bold">2025</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mr-auto w-5/12 pl-8">
+                        <div class="milestone-card glassmorphism p-6 rounded-xl transition duration-300">
+                            <h3 class="playfair text-2xl font-bold text-white mb-3">Today</h3>
+                            <p class="inter text-gray-300">Now a thriving global platform representing over 15 Kenyan artists with collectors from more than 7 counties countrywide.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="py-16 md:py-24 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="playfair text-4xl md:text-5xl font-bold text-white">Meet Our Team</h2>
+            <p class="mt-4 text-xl text-gray-300 max-w-3xl mx-auto inter">The passionate people behind E-Art</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Team Member 1 -->
+            <div class="team-card glassmorphism p-6 rounded-xl text-center transition duration-300">
+                <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-2 border-green-500">
+                    <img src="we.jpg" alt="Team Member" class="w-full h-full object-cover">
+                </div>
+                <h3 class="playfair text-2xl font-bold text-white mb-1">GEORGE NGUGi</h3>
+                <p class="text-green-500 mb-4 inter">Founder & Creative Director</p>
+                <p class="text-gray-300 inter">Kenyan-born artist with a passion for promoting local talent and preserving cultural heritage through art.</p>
+            </div>
+            
+            <!-- Team Member 2 -->
+            <div class="team-card glassmorphism p-6 rounded-xl text-center transition duration-300">
+                <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-2 border-red-500">
+                    <img src="v.jpg" alt="Team Member" class="w-full h-full object-cover">
+                </div>
+                <h3 class="playfair text-2xl font-bold text-white mb-1">FREDRICK KAMAU</h3>
+                <p class="text-red-500 mb-4 inter">Head Curator</p>
+                <p class="text-gray-300 inter">Former museum curator with expertise in contemporary African art and traditional Kenyan artistic expressions.</p>
+            </div>
+            
+            <!-- Team Member 3 -->
+            <div class="team-card glassmorphism p-6 rounded-xl text-center transition duration-300">
+                <div class="w-32 h-32 mx-auto mb-4 rounded-full overflow-hidden border-2 border-yellow-500">
+                    <img src="c.jpg" alt="Team Member" class="w-full h-full object-cover">
+                </div>
+                <h3 class="playfair text-2xl font-bold text-white mb-1">BENARD KARUMA</h3>
+                <p class="text-yellow-500 mb-4 inter">Artist Relations</p>
+                <p class="text-gray-300 inter">Dedicated to artist development and creating opportunities for emerging Kenyan talent on the global stage.</p>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-16 md:py-24 relative">
+    <div class="absolute inset-0 z-0">
+        <img src="d.jpeg" alt="Kenyan Art Background" class="w-full h-full object-cover opacity-40" />
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-gray-900 to-black opacity-90"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="playfair text-4xl md:text-5xl font-bold text-white">Our Values</h2>
+            <p class="mt-4 text-xl text-gray-300 max-w-3xl mx-auto inter">The principles that guide everything we do</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Value 1 -->
+            <div class="glassmorphism p-8 rounded-xl border-l-4 border-green-500">
+                <h3 class="playfair text-2xl font-bold text-white mb-4">Cultural Preservation</h3>
+                <p class="inter text-gray-300">We are dedicated to preserving and promoting Kenya's rich artistic heritage, ensuring traditional art forms continue to thrive alongside contemporary expressions.</p>
+            </div>
+            
+            <!-- Value 2 -->
+            <div class="glassmorphism p-8 rounded-xl border-l-4 border-red-500">
+                <h3 class="playfair text-2xl font-bold text-white mb-4">Artist Empowerment</h3>
+                <p class="inter text-gray-300">We believe in fair compensation and recognition for artists, providing resources, education, and platforms that help Kenyan creators sustain their practice.</p>
+            </div>
+            
+            <!-- Value 3 -->
+            <div class="glassmorphism p-8 rounded-xl border-l-4 border-yellow-500">
+                <h3 class="playfair text-2xl font-bold text-white mb-4">Global Connection</h3>
+                <p class="inter text-gray-300">Art transcends borders and languages. We strive to connect Kenyan artists with global audiences, fostering cultural exchange and international appreciation.</p>
+            </div>
+            
+            <!-- Value 4 -->
+            <div class="glassmorphism p-8 rounded-xl border-l-4 border-green-500">
+                <h3 class="playfair text-2xl font-bold text-white mb-4">Sustainable Art</h3>
+                <p class="inter text-gray-300">We promote environmentally conscious art practices and support artists who use sustainable materials and methods in their creative process.</p>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Partners Section -->
+  <section class="py-16 md:py-24 bg-gray-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="playfair text-4xl md:text-5xl font-bold text-white">Our Partners</h2>
+            <p class="mt-4 text-xl text-gray-300 max-w-3xl mx-auto inter">Collaborating to promote Kenyan art worldwide</p>
+        </div>
+        
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+            <div class="glassmorphism p-6 rounded-xl flex items-center justify-center h-32">
+                <div class="w-full h-20 bg-white bg-opacity-10 rounded flex items-center justify-center">
+                    <span class="playfair text-xl font-bold text-white">Kenya Arts Council</span>
+                </div>
+            </div>
+            
+            <div class="glassmorphism p-6 rounded-xl flex items-center justify-center h-32">
+                <div class="w-full h-20 bg-white bg-opacity-10 rounded flex items-center justify-center">
+                    <span class="playfair text-xl font-bold text-white">Nairobi Museum</span>
+                </div>
+            </div>
+            
+            <div class="glassmorphism p-6 rounded-xl flex items-center justify-center h-32">
+                <div class="w-full h-20 bg-white bg-opacity-10 rounded flex items-center justify-center">
+                    <span class="playfair text-xl font-bold text-white">Global Arts Exchange</span>
+                </div>
+            </div>
+            
+            <div class="glassmorphism p-6 rounded-xl flex items-center justify-center h-32">
+                <div class="w-full h-20 bg-white bg-opacity-10 rounded flex items-center justify-center">
+                    <span class="playfair text-xl font-bold text-white">African Design Fund</span>
+                </div>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="py-16 md:py-24 relative">
+    <div class="absolute inset-0 z-0">
+        <div class="kenyan-pattern w-full h-full opacity-10"></div>
+        <div class="absolute inset-0 bg-black bg-opacity-80"></div>
+    </div>
+    
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="playfair text-4xl md:text-5xl font-bold text-white mb-6">Join Our Artistic Journey</h2>
+        <p class="inter text-xl text-gray-300 mb-10 max-w-3xl mx-auto">Whether you're an artist looking to showcase your work or a collector in search of authentic Kenyan art, we invite you to be part of our growing community.</p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="artists.html" class="gradient-bg px-8 py-4 rounded-full text-lg font-semibold neon-shadow hover:opacity-80 transition-opacity safari-font">JOIN AS ARTIST</a>
+            <a href="collections.html" class="bg-transparent border-2 border-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-white hover:text-gray-900 transition-all safari-font">EXPLORE COLLECTIONS</a>
+        </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-black py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <span class="playfair text-3xl font-bold text-green-500">E-Art</span>
+                <p class="mt-4 text-gray-400 inter">Connecting Kenyan artists with global audiences.</p>
+            </div>
+            
+            <div>
+                <h3 class="text-white font-bold mb-4 playfair">Quick Links</h3>
+                <ul class="space-y-2 inter">
+                    <li><a href="index.html" class="text-gray-400 hover:text-green-500 transition">Home</a></li>
+                    <li><a href="collections.html" class="text-gray-400 hover:text-green-500 transition">Marketplace</a></li>
+                    <li><a href="artists.html" class="text-gray-400 hover:text-green-500 transition">Artists</a></li>
+                    <li><a href="about.html" class="text-gray-400 hover:text-green-500 transition">About</a></li>
+                    <li><a href="contact.html" class="text-gray-400 hover:text-green-500 transition">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="text-white font-bold mb-4 playfair">Contact</h3>
+                <ul class="space-y-2 inter">
+                    <li class="text-gray-400">Nairobi, Kenya</li>
+                    <li class="text-gray-400">eart@gmai.com</li>
+                    <li class="text-gray-400">+254 700 110 527</li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="text-white font-bold mb-4 playfair">Follow Us</h3>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-green-500 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
+                        </svg>
+                    </a>
+                    <!-- Submission Format Block -->
+<div class="glassmorphism p-6 rounded-xl">
+    <div class="flex items-start">
+        <div class="bg-yellow-600 rounded-full p-2 mr-4 flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+            </svg>
+        </div>
+        <div>
+            <h3 class="text-lg font-bold text-white mb-2 playfair">Submission Format</h3>
+            <p class="text-gray-300 inter">All submissions must be made through our online form. Please include your name, a short bio (max 150 words), artwork titles, and a brief description for each piece.</p>
+            <a href="submi.html" class="inline-flex items-center mt-4 text-gray-400 hover:text-green-500 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1.5-13h-3v6h3v2h-3v2h3v2h-5v-12h5v2zm1.5 0h3v12h-3v-12z"/>
+                </svg>
+                <span>Submit Here</span>
+            </a>
+        </div>
+    </div>
+</div>
+</div>
+                    <a href="#" class="text-gray-400 hover:text-green-500 transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm1.5-13h3v12h-3v-12z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="border-t border-gray-800 mt-12 pt-6 text-center inter">
+        <p class="text-gray-400">&copy; 2024 E-Art. All rights reserved.</p>
+    </div>
+    </footer>
+    </body>
+    </html>

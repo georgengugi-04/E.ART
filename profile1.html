@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>March Pencil - Artist Profile | EARTGALLA</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@300;400;700;900&family=Playfair+Display:wght@300;400;700;900&display=swap');
+        
+        .safari-font {
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .artist-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #2D3748, #4A5568, #718096);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #4A5568, #718096, #A0AEC0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .pencil-gradient {
+            background: linear-gradient(45deg, #2D3748, #4A5568, #1A202C);
+        }
+        
+        .graphite-gradient {
+            background: linear-gradient(135deg, #1A202C, #2D3748, #4A5568, #718096);
+        }
+        
+        .glassmorphism {
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(74, 85, 104, 0.3);
+        }
+        
+        .neon-shadow {
+            box-shadow: 0 0 30px rgba(74, 85, 104, 0.6), 0 0 60px rgba(113, 128, 150, 0.3);
+        }
+        
+        .artwork-card {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .artwork-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 50px rgba(74, 85, 104, 0.4), 0 0 40px rgba(113, 128, 150, 0.6);
+        }
+        
+        .artwork-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+            transition: left 0.6s;
+        }
+        
+        .artwork-card:hover::before {
+            left: 100%;
+        }
+        
+        .social-icon {
+            transition: all 0.4s ease;
+        }
+        
+        .social-icon:hover {
+            transform: scale(1.3) rotate(15deg);
+            filter: drop-shadow(0 0 15px rgba(74, 85, 104, 0.8));
+        }
+        
+        #mobile-menu {
+            backdrop-filter: blur(15px);
+        }
+        
+        @keyframes fadeInUp {
+            from { 
+                opacity: 0; 
+                transform: translateY(50px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(2deg); }
+        }
+        
+        @keyframes pencilDraw {
+            0% { stroke-dashoffset: 1000; }
+            100% { stroke-dashoffset: 0; }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 1s ease forwards;
+        }
+        
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+        
+        .pencil-draw {
+            stroke-dasharray: 1000;
+            animation: pencilDraw 3s ease-in-out infinite;
+        }
+        
+        .profile-hero {
+            background: 
+                radial-gradient(circle at 25% 75%, rgba(74, 85, 104, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 75% 25%, rgba(113, 128, 150, 0.2) 0%, transparent 50%),
+                linear-gradient(135deg, rgba(17, 24, 39, 0.95), rgba(31, 41, 55, 0.9));
+        }
+        
+        .stat-card {
+            background: rgba(31, 41, 55, 0.9);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(74, 85, 104, 0.3);
+            transition: all 0.4s ease;
+        }
+        
+        .stat-card:hover {
+            border-color: rgba(113, 128, 150, 0.6);
+            box-shadow: 0 15px 40px rgba(74, 85, 104, 0.3);
+            transform: translateY(-5px) scale(1.02);
+        }
+        
+        .contact-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+        
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+        
+        .contact-btn:hover::before {
+            width: 350px;
+            height: 350px;
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 50px rgba(74, 85, 104, 0.4);
+        }
+        
+        .tab-btn {
+            position: relative;
+            transition: all 0.4s ease;
+        }
+        
+        .tab-btn.active {
+            background: linear-gradient(135deg, #4A5568, #718096);
+            color: white;
+            box-shadow: 0 8px 25px rgba(74, 85, 104, 0.4);
+        }
+        
+        .tab-btn:not(.active):hover {
+            background: rgba(74, 85, 104, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .artwork-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4), transparent);
+        }
+        
+        .skill-tag {
+            background: linear-gradient(45deg, rgba(74, 85, 104, 0.8), rgba(113, 128, 150, 0.6));
+            border: 1px solid rgba(74, 85, 104, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            background: linear-gradient(45deg, rgba(113, 128, 150, 0.8), rgba(74, 85, 104, 0.6));
+            transform: scale(1.08);
+        }
+        
+        .achievement-item {
+            transition: all 0.3s ease;
+        }
+        
+        .achievement-item:hover {
+            background: rgba(74, 85, 104, 0.15);
+            border-radius: 10px;
+            padding: 10px;
+            margin: -10px;
+        }
+        
+        .pencil-shavings {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.08;
+            animation: float 5s ease-in-out infinite;
+        }
+        
+        .pencil-shavings:nth-child(1) {
+            width: 25px;
+            height: 25px;
+            background: #4A5568;
+            top: 15%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .pencil-shavings:nth-child(2) {
+            width: 18px;
+            height: 18px;
+            background: #718096;
+            top: 65%;
+            right: 15%;
+            animation-delay: 1.5s;
+        }
+        
+        .pencil-shavings:nth-child(3) {
+            width: 30px;
+            height: 30px;
+            background: #2D3748;
+            bottom: 25%;
+            left: 75%;
+            animation-delay: 3s;
+        }
+        
+        .new-badge {
+            background: linear-gradient(45deg, #10B981, #34D399);
+            animation: pulse 2s infinite;
+        }
+        
+        .featured-artwork {
+            position: relative;
+            border: 3px solid transparent;
+            background: linear-gradient(135deg, rgba(74, 85, 104, 0.3), rgba(113, 128, 150, 0.3));
+            background-clip: padding-box;
+        }
+        
+        .featured-artwork::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            background: linear-gradient(45deg, #4A5568, #718096, #A0AEC0);
+            border-radius: inherit;
+            z-index: -1;
+        }
+        
+        .pencil-texture {
+            background-image: 
+                linear-gradient(45deg, rgba(74, 85, 104, 0.1) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(74, 85, 104, 0.1) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(74, 85, 104, 0.1) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(74, 85, 104, 0.1) 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white overflow-x-hidden">
+    <!-- Floating Pencil Shavings -->
+    <div class="pencil-shavings"></div>
+    <div class="pencil-shavings"></div>
+    <div class="pencil-shavings"></div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-gray-900 bg-opacity-95 z-50 hidden">
+        <div class="flex flex-col items-center justify-center h-full bg-gray-500 bg-opacity-80">
+            <button id="close-mobile-menu" class="text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <div class="w-24 h-1 gradient-bg mb-6"></div>
+            <h2 class="safari-font text-3xl font-bold text-white mb-6">MENU</h2>
+            <div class="w-24 h-1 gradient-bg mb-6"></div>
+            <a href="index.php" class="text-3xl font-semibold text-white mb-6 hover:text-gray-400 transition-colors">Home</a>
+            <a href="collections.html" class="text-3xl font-semibold text-white mb-6 hover:text-gray-400 transition-colors">Marketplace</a>
+            <a href="artists.html" class="text-3xl font-semibold text-white mb-6 hover:text-gray-400 transition-colors">Artists</a>
+            <a href="about.html" class="text-3xl font-semibold text-white mb-6 hover:text-gray-400 transition-colors">About</a>
+            <a href="contact.php" class="text-3xl font-semibold text-white mb-6 hover:text-gray-400 transition-colors">Contact</a>
+            <a href="submit.php" class="text-3xl font-semibold text-white mb-6 hover:text-gray-400 transition-colors">Submit Art</a>
+            <a href="contact.php" class="mt-4 px-8 py-3 gradient-bg text-white rounded-full hover:opacity-90 transition-all font-semibold">Get Started</a>
+        </div>
+    </div>
+<!-- Add a semi-transparent overlay for page transitions -->
+    <div id="page-transition" class="fixed inset-0 bg-black opacity-0 pointer-events-none z-[100] transition-opacity duration-500"></div>
+    <!-- Navigation bar -->
+    <nav class="fixed w-full z-50 glassmorphism">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <span class="text-4xl font-black uppercase tracking-wider gradient-text safari-font">EARTGALLA</span>
+                    <div class="hidden md:flex space-x-8 ml-12">
+                        <a href="index.php" class="text-slate-300 hover:text-gray-400 transition-colors font-semibold">Home</a>
+                        <a href="collections.html" class="text-slate-300 hover:text-gray-400 transition-colors font-semibold">Marketplace</a>
+                        <a href="artists.html" class="text-gray-400 font-semibold">Artists</a>
+                        <a href="about.html" class="text-slate-300 hover:text-gray-400 transition-colors font-semibold">About</a>
+                        <a href="contact.php" class="text-slate-300 hover:text-gray-400 transition-colors font-semibold">Contact</a>
+                        <a href="submit.php" class="text-slate-300 hover:text-gray-400 transition-colors font-semibold">Submit Art</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="cart.php" class="border-gray-500 text-white border-b-2 px-1 pt-1 text-sm font-medium hover:text-gray-400 transition-colors">
+                        Cart (<span id="cart-count">0</span>)
+                    </a>
+                    <div class="hidden md:block">
+                        <a href="contact.php" class="px-6 py-3 gradient-bg text-white rounded-full hover:opacity-90 transition-all font-semibold">Get Started</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-toggle" class="text-white focus:outline-none hover:text-gray-400 transition-colors">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Hero Section -->
+    <section class="pt-24 pb-16 px-6 md:px-16 profile-hero relative pencil-texture">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col lg:flex-row gap-12 items-start animate-fadeInUp">
+                <!-- Artist Image & Info -->
+                <div class="lg:w-1/3">
+                    <div class="text-center">
+                        <div class="relative inline-block animate-float">
+                            <img src="imgs/aa.jpg" alt="March Pencil" class="w-64 h-64 rounded-full object-cover mx-auto neon-shadow border-4 border-gray-400">
+                            <div class="absolute -bottom-2 -right-2 w-8 h-8 bg-green-500 rounded-full border-4 border-gray-900 animate-pulse"></div>
+                            <div class="new-badge absolute -top-3 -left-3 px-2 py-1 rounded-full text-xs font-bold text-white">NEW</div>
+                            <!-- Pencil decorations -->
+                            <div class="absolute -top-4 -left-4 w-8 h-8 pencil-gradient rounded-full opacity-80"></div>
+                            <div class="absolute -top-2 -right-6 w-6 h-6 graphite-gradient rounded-full opacity-80"></div>
+                            <div class="absolute -bottom-4 left-6 w-5 h-5 bg-gray-600 rounded-full opacity-70"></div>
+                        </div>
+                        <h1 class="safari-font text-3xl md:text-4xl font-bold mt-6 mb-2 gradient-text">MARCH PENCIL</h1>
+                        <p class="text-gray-400 text-xl mb-2 artist-font">Master of Graphite & Precision</p>
+                        <p class="text-gray-500 text-sm mb-6">Pencil Art Specialist • Hyperrealistic Drawings • Fine Detail Work</p>
+                        
+                        <div class="flex justify-center space-x-4 mb-6">
+                            <a href="#" class="text-gray-500 hover:text-gray-400 transition-all social-icon">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-gray-400 transition-all social-icon">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-gray-400 transition-all social-icon">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-gray-400 transition-all social-icon">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.042-3.441.219-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.888-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.357-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001.017.001z"/></svg>
+                            </a>
+                        </div>
+                    <a href="https://wa.me/254718465470?text=Hi%20there!%20I'm%20interested%20in%20commissioning%20a%20pencil%20art%20piece." target="_blank" rel="noopener noreferrer">
+    <button class="contact-btn gradient-bg px-8 py-3 rounded-full font-semibold safari-font neon-shadow relative z-10">
+        COMMISSION PENCIL ART
+    </button>
+</a>
+
+                    </div>
+                </div>
+
+                <!-- Artist Details & Stats -->
+                <div class="lg:w-2/3">
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                        <div class="stat-card rounded-xl p-4 text-center">
+                            <div class="text-2xl font-bold gradient-text safari-font">189</div>
+                            <div class="text-gray-400 text-sm">Pencil Works</div>
+                        </div>
+                        <div class="stat-card rounded-xl p-4 text-center">
+                            <div class="text-2xl font-bold gradient-text safari-font">12</div>
+                            <div class="text-gray-400 text-sm">Years of Experience</div>
+                            </div>
+                        <div class="stat-card rounded-xl p-4 text-center">
+                            <div class="text-2xl font-bold gradient-text safari-font">7</div>
+                            <div class="text-gray-400 text-sm">Sold</div>
+                        </div>
+                        <div class="stat-card rounded-xl p-4 text-center">
+                            <div class="text-2xl font-bold gradient-text safari-font">4.8</div>
+                            <div class="text-gray-400 text-sm">Rating</div>
+                        </div>
+                    </div>
+
+                    <div class="glassmorphism rounded-xl p-6 mb-6">
+                        <h3 class="safari-font text-xl font-bold mb-4 gradient-text">ABOUT THE ARTIST</h3>
+                        <p class="text-gray-300 mb-4 artist-font">March Pencil is a distinguished graphite artist who transforms simple pencil strokes into breathtaking masterpieces. With over 8 years dedicated to perfecting the art of pencil drawing, March has developed an extraordinary ability to capture life-like detail and emotion through the subtle gradations of graphite.</p>
+                        <p class="text-gray-300 mb-4 artist-font">Specializing in hyperrealistic portraits, detailed still life compositions, and intricate architectural drawings, March's work demonstrates an unparalleled mastery of light, shadow, and texture. Each piece is meticulously crafted using traditional pencil techniques, creating stunning monochromatic artworks that rival photography in their precision.</p>
+                        
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="skill-tag px-3 py-1 rounded-full text-xs font-medium">Hyperrealistic Portraits</span>
+                            <span class="skill-tag px-3 py-1 rounded-full text-xs font-medium">Graphite Drawing</span>
+                            <span class="skill-tag px-3 py-1 rounded-full text-xs font-medium">Charcoal Art</span>
+                            <span class="skill-tag px-3 py-1 rounded-full text-xs font-medium">Still Life</span>
+                            <span class="skill-tag px-3 py-1 rounded-full text-xs font-medium">Architectural Sketches</span>
+                            <span class="skill-tag px-3 py-1 rounded-full text-xs font-medium">Custom Portraits</span>
+                        </div>
+                    </div>
+
+                    <div class="glassmorphism rounded-xl p-6">
+                        <h3 class="safari-font text-xl font-bold mb-4 gradient-text">ACHIEVEMENTS & RECOGNITION</h3>
+                        <div class="space-y-3">
+                            <div class="achievement-item flex items-center">
+                                <div class="w-3 h-3 gradient-bg rounded-full mr-3 flex-shrink-0"></div>
+                                <span class="text-gray-300"> Pencil Art Champion</span>
+                            </div>
+                            <div class="achievement-item flex items-center">
+                                <div class="w-3 h-3 gradient-bg rounded-full mr-3 flex-shrink-0"></div>
+                                <span class="text-gray-300">Featured Artist - Contemporary Drawing </span>
+                            </div>
+                            <div class="achievement-item flex items-center">
+                                <div class="w-3 h-3 gradient-bg rounded-full mr-3 flex-shrink-0"></div>
+                                <span class="text-gray-300"> Graphite Techniques </span>
+                            </div>
+                            <div class="achievement-item flex items-center">
+                                <div class="w-3 h-3 gradient-bg rounded-full mr-3 flex-shrink-0"></div>
+                                <span class="text-gray-300"> "Masters of Pencil Art" </span>
+                            </div>
+                            <div class="achievement-item flex items-center">
+                                <div class="w-3 h-3 gradient-bg rounded-full mr-3 flex-shrink-0"></div>
+                                <span class="text-gray-300">Commissioned by renowned galleries and private collectors</span>
+                            </div>
+                        </div>
+                    </div>
+                   <div class="mt-8">
+    <h3 class="safari-font text-xl font-bold mb-4 gradient-text">FEATURED ARTWORK</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Artwork Card 1 -->
+        <div class="artwork-card relative rounded-lg overflow-hidden">
+            <img src="imgs/11.jpeg" alt="Artwork 1" class="w-full h-64 object-cover">
+            <div class="artwork-overlay absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+                <span class="text-white text-lg font-semibold">Hyperrealistic Portrait</span>
+            </div>
+        </div>
+
+        <!-- Artwork Card 2 -->
+        <div class="artwork-card relative rounded-lg overflow-hidden">
+            <img src="imgs/22.jpeg" alt="Artwork 2" class="w-full h-64 object-cover">
+            <div class="artwork-overlay absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+                <span class="text-white text-lg font-semibold">Abstract Expression</span>
+            </div>
+        </div>
+
+        <!-- Artwork Card 3 -->
+        <div class="artwork-card relative rounded-lg overflow-hidden">
+            <img src="imgs/4.jpg" alt="Artwork 3" class="w-full h-64 object-cover">
+            <div class="artwork-overlay absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+                <span class="text-white text-lg font-semibold">Modern Minimalism</span>
+            </div>
+        </div>
+    <!-- Artwork Card 4 -->
+        <div class="artwork-card relative rounded-lg overflow-hidden">
+            <img src="imgs/a.jpg" alt="Artwork 2" class="w-full h-64 object-cover">
+            <div class="artwork-overlay absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+                <span class="text-white text-lg font-semibold">Abstract Expression</span>
+            </div>
+        </div>
+         <!-- Artwork Card 5 -->
+        <div class="artwork-card relative rounded-lg overflow-hidden">
+            <img src="imgs/1.jpg" alt="Artwork 2" class="w-full h-64 object-cover">
+            <div class="artwork-overlay absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300 bg-black bg-opacity-50">
+                <span class="text-white text-lg font-semibold">Abstract Expression</span>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+    
+
+    <script>
+        // Mobile menu functionality
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+        
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        });
+        
+        // Close mobile menu when clicking a navigation link
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Add page transition effect
+                const pageTransition = document.getElementById('page-transition');
+                pageTransition.classList.add('opacity-50');
+                pageTransition.classList.remove('pointer-events-none');
+                
+                setTimeout(() => {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                    
+                    // Remove transition effect
+                    setTimeout(() => {
+                        pageTransition.classList.remove('opacity-50');
+                        pageTransition.classList.add('pointer-events-none');
+                    }, 300);
+                }, 300);
+            });
+        });
+
+        // Parallax effect for header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const scrollPosition = window.scrollY;
+            header.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
+        });
+
+        // Intersection Observer for revealing elements on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeIn');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add animation classes
+        document.head.insertAdjacentHTML('beforeend', `
+            <style>
+                @keyframes fadeIn {
+                    from { opacity: 90; transform: translateY(20px); }
+                    to { opacity: 1; transform: translateY(0); }
+                }
+                .animate-fadeIn {
+                    animation: fadeIn 0.8s ease forwards;
+                }
+                section {
+                    opacity: 60;
+                }
+            </style>
+        `);
+    </script>
+ <footer class="mt-16 text-center text-gray-500">
+                    <p class="text-sm">&copy; 2024 EARTGALLA. All rights reserved.</p>
+                    <p class="text-xs mt-2">Designed by George Ngugi</p>
+                </footer>
+
+</body>
+</html>
+
+   
